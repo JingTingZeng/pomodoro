@@ -1,0 +1,9 @@
+{
+    "less.compile": {
+        "main": ["${workspaceRoot}/Content/less/custom.less"],
+        "out": "${workspaceRoot}/Content/css/",
+        "sourceMap": true,
+        "sourceMapFileInline":true,
+        "compress":false
+    }
+}

@@ -1,0 +1,234 @@
+@import "../vendor/bootstrap/less/bootstrap.less";
+
+//---------------------全域變數----------------
+@url:"../images/";
+@main-color:#0D151D;
+@secondary-color:#F4D03F;
+@dark-main-color:#1B2A3B;
+
+//---------------------全域樣式----------------
+body{
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+    font-size: 21px;
+}
+
+//---------------------側邊選單----------------
+.sidebar{
+    background-color: @main-color;
+    box-shadow: 2px 0 5px #000000;
+    width: 128px;
+    height: 100vh;
+    position: absolute;
+    right: 0;
+    z-index: 999;
+}  
+.brand{
+    position: absolute;
+    font-size: 33px;
+    font-weight: bold;
+    transform:rotate(90deg);
+    opacity: 0.3;
+    bottom: 15%;
+    right: -35px;
+    margin-top: 0;
+    margin-bottom: 0;
+} 
+.sidebar-menu{
+    padding: 40px;
+}
+.sidebar-item{
+    margin-bottom: 28px;
+    a{
+        width: 48px;
+        height: 48px;
+        display: block;
+        background-repeat: no-repeat;
+        i{
+            color: #fff;
+            font-size: 48px;
+            display: block;
+        }
+        &:hover,&:active,&:focus{
+            text-decoration: none;
+            i{
+                opacity: 0.3;
+            }
+        }
+    }
+    &.active{
+        a{
+            i{
+                color: @secondary-color;
+            }
+        }
+    }
+}
+
+//---------------------內容-時間區----------------
+.timer{
+    padding: 65px 104px;
+}
+.timer-header{
+    
+}
+.timer-content{
+    span{
+        display: block;
+        font-weight: bold;
+        &:first-child{
+            color: #9F9F9F;
+        }
+        &:last-child{
+            font-size: 42px;
+        }
+    }
+}
+.clock{
+    margin-bottom: 38px;
+}
+.clock-content{
+    border-radius: 50%;
+    background-color: rgba(27, 42, 59, 0.5);
+    border:8px solid @dark-main-color;
+    width: 420px;
+    height: 420px;
+    margin:0 auto;
+    color: @secondary-color;
+    text-align: center;
+    font-weight: bold;
+    position: relative;
+}
+.clock-header{
+    font-size: 30px;
+    position: absolute;
+    left:50%;
+    top:30%;
+    margin-left: -101px;
+    margin-top: -21px;
+}
+.clock-body{
+    font-size: 130px;
+    position: absolute;
+    left:50%;
+    top:50%;
+    margin-left: -166px;
+    margin-top: -93px;
+}
+.time-control{
+    position: relative;
+    a{
+        display: inline-block;
+        i{
+            color: #fff;
+            font-size: 61px;
+        }
+        &:hover{
+            i{
+                color: @secondary-color;
+            }
+        }
+        &.cancel{
+            position: absolute;
+            top:0;
+            left: 32%;
+            margin-left: -30px;
+        }
+        &.play{
+            position: absolute;
+            top:0;
+            left:50%;
+            margin-left: -54px;
+            i{
+                font-size: 100px;
+            }
+        }
+        &.replay{
+            border-radius: 50%;
+            border:6px solid #fff;
+            width: 51px;
+            height: 51px;
+            position: absolute;
+            top:8px;
+            left: 67%;
+            margin-left: -25px;
+            i{
+                position: absolute;
+                transform: rotateY(180deg);
+                font-size: 25px;
+                font-weight: bold;
+                left: 50%;
+                top:50%;
+                margin-left: -12.5px;
+                margin-top: -12px;
+
+            }
+            &:hover{
+                border:6px solid @secondary-color;
+            }
+        }
+    }
+}
+
+//---------------------內容-代辦事項----------------
+.list{
+    height: 100vh;
+    background-color: rgba(255, 255, 255, 0.05);
+    padding: 65px 200px 65px 104px;
+}
+.btn-add{
+    background-color: @secondary-color;
+    color:@dark-main-color;
+    font-size: 24px;
+    font-weight: bold;
+    border-radius: 36px;
+    i{
+        color:@dark-main-color;
+        font-size: 36px;
+        font-weight: bold;
+        vertical-align: top;
+    }
+    span{
+        vertical-align: top;
+    }
+}
+
+.todolist{
+    margin-top: 30px;
+    margin-bottom: 25px;
+}
+.todolist-header{
+    font-size: 30px;
+    color: @secondary-color;
+    font-weight: bold;
+    line-height: 43px;
+}
+.todolist-body{
+    li{
+        background-color: @dark-main-color;
+        border-radius:5px;
+        padding: 6px 12px 0 12px;
+        margin-bottom: 5px;
+        a{
+            display: inline-block;
+            vertical-align: top;
+        }
+        i{
+            color: @secondary-color;
+            font-size: 28px;
+            line-height: auto;
+        }
+        span{
+            vertical-align: top;
+            
+        }
+        &.done{
+            background-color: rgba(27, 42, 59, 0.5);
+            span{
+                text-decoration: line-through;
+                opacity: 0.5;
+            }
+        }
+    }
+}

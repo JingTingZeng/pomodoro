@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Pomodoro | 番茄鐘</title>
+    <link rel="stylesheet" href="Content/css/custom.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons|Material+Icons+Outlined">
+</head>
+<body>
+    <header>
+        <div class="sidebar">
+            <ul class="list-unstyled sidebar-menu">
+                <li class="sidebar-item active"><a href="#"><i class="material-icons-outlined">home</i></a></li>
+                <li class="sidebar-item"><a href="#"><i class="material-icons-outlined">subject</i></a></li>
+                <li class="sidebar-item"><a href="#"><i class="material-icons-outlined">free_breakfast</i></a></li>
+            </ul>
+            <h1 class="brand">POMODORO</h1>
+        </div>
+    </header>
+
+    <main>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-sm-6 timer">
+                    <div class="row timer-header">
+                        <div class="col-sm-6 timer-content">
+                            <span>2019/01/02</span>
+                            <span>09:00</span>
+                        </div>
+                        <div class="col-sm-6 timer-content text-right">
+                            <span>Done / To do</span>
+                            <span>5/10</span>
+                        </div>
+                    </div>
+                    <div class="row clock">
+                        <div class="col-sm-12">
+                            <div class="clock-content"> 
+                                <div class="clock-header"> - Start Work -</div>
+                                <div class="clock-body">25:00</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="time-control">
+                                <a href="#" class="cancel"><i class="material-icons">highlight_off</i></a>
+                                <a href="#" class="play"><i class="material-icons-outlined">play_circle_outlined</i></a>
+                                <a href="#" class="replay"><i class="material-icons">replay</i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 list">
+                    <div class="row">
+                        <div class="col-sm-12 text-right">
+                            <button class="btn btn-add">
+                                <i class="material-icons">add_circle_outline </i>
+                                <span>Add Task</span>
+                            </button>
+                        </div>
+                    </div>
+                    <div class="row todolist">
+                        <div class="todolist-header">
+                            To do
+                        </div>
+                        <ol class="list-unstyled todolist-body">
+                            <li>
+                                <a href="#"><i class="material-icons">play_arrow</i></a>
+                                <span>1.the first things to do.</span>
+                            </li>
+                            <li>
+                                <a href="#"><i class="material-icons">play_arrow</i></a>
+                                <span>1.the first things to do.</span>
+                            </li>
+                        </ol>
+                    </div>
+                    <div class="row todolist">
+                        <div class="todolist-header">
+                            Done
+                        </div>
+                        <ol class="list-unstyled todolist-body">
+                            <li class="done">
+                                <a href="#"><i class="material-icons">check</i></a>
+                                <span>1.the first things to do.</span>
+                            </li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

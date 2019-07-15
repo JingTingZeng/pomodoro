@@ -213,6 +213,12 @@ body{
         a{
             display: inline-block;
             vertical-align: top;
+            &.clear{
+                float: right;
+                i{
+                    color: #fff;
+                }
+            }
         }
         i{
             color: @secondary-color;
@@ -223,6 +229,7 @@ body{
             vertical-align: top;
             
         }
+        
         &.done{
             background-color: rgba(27, 42, 59, 0.5);
             span{
@@ -232,3 +239,6 @@ body{
         }
     }
 }
+
+
+//---------------------新增任務視窗----------------

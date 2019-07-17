@@ -30,8 +30,8 @@
                 <div class="col-sm-6 timer">
                     <div class="row timer-header">
                         <div class="col-sm-6 timer-content">
-                            <span>2019/01/02</span>
-                            <span>09:00</span>
+                            <span>{{new Date()|dateConvert}}</span>
+                            <span>{{new Date()|timeConvert}}</span>
                         </div>
                         <div class="col-sm-6 timer-content text-right">
                             <span>Done / To do</span>
@@ -106,8 +106,8 @@
                     <input v-model="newItem" type="text" class="form-control" id="title">
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Cancel</button>
-                    <button type="button" class="btn btn-primary" v-on:click="addTodo">Send</button>
+                    <button type="button" class="btn model-btn btn-default" data-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn model-btn" v-on:click="addTodo">Send</button>
                 </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->

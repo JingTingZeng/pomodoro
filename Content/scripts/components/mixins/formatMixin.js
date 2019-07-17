@@ -110,7 +110,7 @@
                 // if (template === undefined) {
                 //     template = "YYYY-MM-DD";
                 // }
-                template = template || 'YYYY-MM-DD';
+                template = template || 'YYYY/MM/DD';
                 return moment(date).format(template);
             },
             /*

@@ -57,6 +57,7 @@
                 }
             },
             startCountDown:function(type){
+                this.doingWork = this.notYet[0];
                 this.timer(this.currentTime);
                 this.startBtn = false;
             },

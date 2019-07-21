@@ -25,13 +25,13 @@
     </header>
 
     <main id="app">
-        <div class="container-fluid">
+        <div class="container-fluid" v-cloak>
             <div class="row">
                 <div class="col-sm-6 timer">
                     <div class="row timer-header">
                         <div class="col-sm-6 timer-content">
                             <span>{{new Date()|dateConvert}}</span>
-                            <span>{{new Date()|timeConvert}}</span>
+                            <span>{{new Date()|nowTime}}</span>
                         </div>
                         <div class="col-sm-6 timer-content text-right">
                             <span>Done / To do</span>
@@ -40,8 +40,8 @@
                     </div>
                     <div class="row clock">
                         <div class="col-sm-12">
-                            <div class="clock-content"> 
-                                <div class="clock-header"> - Start Work -</div>
+                            <div class="clock-content" v-bind:style="{color:(displayStatus == 'Break') ? '#19B5FE':''}"> 
+                                <div class="clock-header"> - Start {{displayStatus}} -</div>
                                 <div class="clock-body">{{timeLeft | timeConvert}}</div>
                             </div>
                         </div>
@@ -51,7 +51,10 @@
                             <div class="time-control">
                                 <a href="#" class="cancel"><i class="material-icons">highlight_off</i></a>
                                 <a v-if="startBtn" href="#" class="play" v-on:click.prevent="startCountDown"><i class="material-icons-outlined">play_circle_outlined</i></a>
-                                <a v-else href="#" class="play" v-on:click.prevent="pauseCounting"><i class="material-icons">pause_circle_outline</i></a>
+                                <a v-else href="#" class="play" v-on:click.prevent="pauseCounting">
+                                    <i v-if="isPaused" class="material-icons-outlined">play_circle_outlined</i>
+                                    <i v-else class="material-icons">pause_circle_outline</i>
+                                </a>
                                 <a href="#" class="replay" v-on:click.prevent="reset"><i class="material-icons">replay</i></a>
                             </div>
                         </div>
@@ -71,8 +74,14 @@
                             To do
                         </div>
                         <ol class="list-unstyled todolist-body">
-                            <li v-for="(item,index) in todolist">
-                                <a href="#" v-on:click.prevent="addDoing(item)"><i class="material-icons">play_arrow</i></a>
+                            <li v-for="(item,index) in notYet" v-bind:style="{color:(doingWork.id == item.id)?'#F4D03F':''}" v>
+                                <a v-if="doingWork.id == item.id && startBtn == false" href="#" v-on:click.prevent="pauseCounting">
+                                    <i v-if="isPaused" class="material-icons">play_arrow</i>
+                                    <i v-else class="material-icons">pause</i>
+                                </a>
+                                <a v-else href="#" v-on:click.prevent="addDoing(item)">
+                                    <i class="material-icons">play_arrow</i>
+                                </a>
                                 <span>{{index+1}}. {{item.content}}</span>
                                 <a href="#" v-on:click.prevent="deleteItem(item.id)" class="clear"><i class="material-icons">clear</i></a>
                             </li>
@@ -83,9 +92,9 @@
                             Done
                         </div>
                         <ol class="list-unstyled todolist-body">
-                            <li class="done">
+                            <li class="done" v-for="(item,index) in workCompleted" v-cloak>
                                 <a href="#"><i class="material-icons">check</i></a>
-                                <span>1.the first things to do.</span>
+                                <span>{{index+1}}. {{item.content}}</span>
                             </li>
                         </ol>
                     </div>

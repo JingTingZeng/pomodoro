@@ -4,7 +4,11 @@
     var app = new Vue({
         el: "#app",
         data: {
-            todolist:[],
+            todolist:[
+                {id:"1",content:"The First task to do today!",complete:true},
+                {id:"2",content:"The Second task to do today!",complete:false},
+                {id:"3",content:"The Third task to do today!",complete:false},
+            ],
             newItem:"",
             doingWork:{},
             timeLeft:0,
@@ -13,20 +17,17 @@
             time:[
                 {
                     name:"working",
-                    duration: 60
+                    duration: 1500
                 },
                 {
                     name:"break",
-                    duration:300
+                    duration: 300
                 }
             ],
             isPaused:false
         },
         mounted: function () {
             var vm =this;
-            if(this.todolist.length != 0){
-                this.addDoing(this.todolist[0]);
-            }
             vm.timeLeft = vm.time[vm.currentTime].duration*1000;
         },
         updated: function () {
@@ -46,6 +47,8 @@
             },
             addDoing:function(item){
                 this.doingWork = item;
+                this.timer(this.currentTime);
+                this.startBtn=false;
             },
             deleteItem:function(id){
                 var check = confirm('確定要刪除此工作項目?');
@@ -58,20 +61,6 @@
                 this.startBtn = false;
             },
             timer:function(current){
-                // const now = Date.now();
-                // const then = now + this.time[current].duration;
-                // const vm = this;
-
-                // this.timeLeft = seconds*1000;
-
-                // countdown= window.setInterval(function () {
-                //     let secondsLeft = Math.round((then -  Date.now())/1000);
-                //     if (secondsLeft < 0) {
-                //         window.clearInterval(countdown);
-                //         return;
-                //     }
-                //     vm.timeLeft = secondsLeft*1000;
-                // }, 1000)
                 const vm= this;
                 countdown= window.setInterval(function () {
                     if(!vm.isPaused){
@@ -80,15 +69,14 @@
                     }
                     if(vm.time[current].duration <= 0){
                         vm.currentTime = vm.currentTime+1
-                        if(vm.currentTime === 2){
-                            console.log("break time over,restart pomodoro");
+                        if(vm.currentTime == 2){
                             clearInterval(countdown);
-                            vm.currentTime = 0;
+                            vm.reset();
                             return 
                         }else{
                             clearInterval(countdown);
-                            console.log("work time over,start break");
-                            vm.currentTime = 1;
+                            vm.timeLeft= vm.time[vm.currentTime].duration*1000;
+                            vm.timer(vm.currentTime);
                         }
                     }
                 },1000)
@@ -116,22 +104,40 @@
             }
         },
         filters: {
+            nowTime:function(time){
+                if (time === null) {
+                    return "";
+                }
+                return moment(time).format('HH:mm');
+            },
             
         },
         mixins: [self.mixinMethod,self.formatMixin],
         watch: {
-            // isPaused:function(val){
-            //     if(val){
-            //         this.startBtn = true;
-            //     }else{
-            //         this.startBtn = false;
-            //     }
-            // }
         },
         computed: {
+            displayStatus:function(){
+                if(this.currentTime == 0){
+                    return　"Work";
+                }
+                return "Break";
+
+            },
+            notYet:function(){
+                var items = this.todolist.filter(function(e){
+                    return e.complete == false;
+                });
+                return items;
+            },
+            workCompleted:function(){
+                var completedItem = this.todolist.filter(function(e){
+                    return e.complete == true;
+                });
+                return completedItem;
+            }
         },
         components: {
-            
         }
     });
+    window.app= app;
 })();
